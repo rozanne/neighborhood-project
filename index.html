@@ -29,6 +29,9 @@
 							<button class="btn btn-outline-secondary" type="submit">Filter</button>
 						</div>
 					</form>
+					<div class="list" data-bind="foreach: stations, visible: stations().length > 0">
+					    <p data-bind="text: name"></p>
+					</div>
 				</div>
 				<div class="col-md-8 map-container">
 					<div id="map" class="map-canvas"></div>
