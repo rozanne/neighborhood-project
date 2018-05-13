@@ -8,4 +8,25 @@ window.onload = function() {
         zoom: zoom
     });
     L.tileLayer('http://tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(mymap);
+
+    ko.applyBindings(new StationViewModel());
+}
+
+function Station(data) {
+    console.log('ko::::Station ' + data.name);
+    this.name = ko.observable(data.name);
+}
+
+function StationViewModel() {
+    var self = this;
+    self.stations = ko.observableArray([]);
+    self.newStation = ko.observable();
+
+    self.searchStation = function() {
+        console.log('ko::::searchStation');
+        self.stations.push(new Station({ name: this.newStation() }));
+        self.newStation('');
+    };
+
+    self.removeStation = function(station) { self.stations.remove(station) };
 }
